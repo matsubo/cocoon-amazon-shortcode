@@ -32,7 +32,7 @@ function updateKeywordList() {
         span.textContent = keyword;
         li.appendChild(span);
         const removeButton = document.createElement('button');
-        removeButton.textContent = 'Remove';
+        removeButton.textContent = '削除';
         removeButton.className = 'btn btn-danger btn-sm';
         removeButton.onclick = () => removeKeyword(keyword);
         li.appendChild(removeButton);
