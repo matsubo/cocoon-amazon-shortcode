@@ -1,5 +1,8 @@
 # Amazon Affiliate Link Generator Chrome Extension
 
+[![ESLint](https://github.com/matsubo/cocoon-amazon-shortcode/actions/workflows/eslint.yml/badge.svg)](https://github.com/matsubo/cocoon-amazon-shortcode/actions/workflows/eslint.yml)
+
+
 このChrome拡張機能は、Wordpressの[Cocoon](https://wp-cocoon.com/)テーマを利用しているWordpress用に
 Amazonの商品ページのアフィリエイトリンクをワンクリックで生成します。
 
