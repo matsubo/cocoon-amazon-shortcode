@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Amazon Affiliate Code Generator for Cocoon",
-  "version": "1.0",
+  "version": "1.0.1",
   "description": "Generate affiliate link for Amazon products with keyword exclusion",
   "permissions": ["activeTab", "clipboardWrite", "storage"],
   "browser_action": {
