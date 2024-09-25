@@ -11,6 +11,10 @@
   "icons": {
     "48": "icon.png"
   },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
   "content_scripts": [
     {
       "matches": ["https://www.amazon.co.jp/*", "https://amazon.co.jp/*"],
