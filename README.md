@@ -73,8 +73,12 @@ Cocoonのテーマを使っているWordpressにそのまま貼り付けると�
 
 貢献は歓迎します！プルリクエストを提出してください。
 
-## ほしいものリスト
+## 応援
 
 もし役に立ったと思ったら、応援お願いします！
+
 https://www.amazon.jp/hz/wishlist/ls/1Y9PUK3OZYI5M?ref_=wl_share
 
+
+コーヒー飲みたい。
+https://buymeacoffee.com/matsubokkuri
