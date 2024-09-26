@@ -1,4 +1,4 @@
-# Amazon Affiliate Link Generator Chrome Extension
+# Amazon Affiliate Link Generator Chrome Extension for Cocoon
 
 [![ESLint](https://github.com/matsubo/cocoon-amazon-shortcode/actions/workflows/eslint.yml/badge.svg)](https://github.com/matsubo/cocoon-amazon-shortcode/actions/workflows/eslint.yml)
 
