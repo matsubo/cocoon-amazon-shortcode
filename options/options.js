@@ -1,8 +1,17 @@
 let excludeKeywords = [];
+let exclude = {
+    rakuten: true,
+    yahoo: true,
+    mercari: true,
+    dmm: true
+};
 
 function saveOptions() {
-    chrome.storage.sync.set({excludeKeywords: excludeKeywords}, function() {
-        console.debug('Keywords saved');
+    chrome.storage.sync.set({
+        excludeKeywords: excludeKeywords,
+        exclude: exclude
+    }, function() {
+        console.debug('Options saved');
     });
 }
 
@@ -40,10 +49,33 @@ function updateKeywordList() {
     });
 }
 
+function updateCheckboxes() {
+    document.querySelectorAll('input[name="exclude"]').forEach(checkbox => {
+        checkbox.checked = exclude[checkbox.id];
+    });
+}
+
 document.getElementById('add').addEventListener('click', addKeyword);
 
-// Load saved keywords
-chrome.storage.sync.get({excludeKeywords: []}, function(data) {
+document.querySelectorAll('input[name="exclude"]').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+        exclude[this.id] = this.checked;
+        saveOptions();
+    });
+});
+
+// Load saved options
+chrome.storage.sync.get({
+    excludeKeywords: [],
+    exclude: {
+        rakuten: true,
+        yahoo: true,
+        mercari: true,
+        dmm: true
+    }
+}, function(data) {
     excludeKeywords = data.excludeKeywords;
+    exclude = data.exclude;
     updateKeywordList();
+    updateCheckboxes();
 });

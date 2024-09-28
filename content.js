@@ -4,11 +4,36 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     const title = getProductTitle();
     
     if (asin && title) {
-      chrome.storage.sync.get({excludeKeywords: []}, function(data) {
+      chrome.storage.sync.get({excludeKeywords: [], exclude: {}}, function(data) {
+
         const cleanTitle = removeExcludedKeywords(title, data.excludeKeywords);
-        const affiliateCode = `[amazon asin="${asin}" kw="${cleanTitle}"]`;
+
+        let attributes = [];
+
+        attributes.push(`asin="${asin}"`)
+        attributes.push(`kw="${cleanTitle}"`)
+
+        const exclude = data.exclude;
+
+        console.info(exclude['rakuten']);
+        if (exclude['rakuten'] == true) {
+          attributes.push("rakuten=0");
+        }
+        if (exclude['yahoo'] == true) {
+          attributes.push("yahoo=0");
+        }
+        if (exclude['mercari'] == true) {
+          attributes.push("mercari=0");
+        }
+        if (exclude['dmm'] == true) {
+          attributes.push("dmm=0");
+        }
+
+        let attributes_string = attributes.join(" ");
+        const affiliateCode = `[amazon ${attributes_string}]`;
+
         copyToClipboard(affiliateCode);
-        alert("クリップボードにコピーされました");
+        alert("クリップボードにコピーされました\n\n" + affiliateCode);
       });
     } else {
       alert("Could not generate affiliate link. Make sure you're on a product page.");
