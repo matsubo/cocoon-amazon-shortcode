@@ -15,7 +15,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
         const exclude = data.exclude;
 
-        console.info(exclude['rakuten']);
         if (exclude['rakuten'] == true) {
           attributes.push("rakuten=0");
         }
@@ -33,7 +32,23 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         const affiliateCode = `[amazon ${attributes_string}]`;
 
         copyToClipboard(affiliateCode);
-        alert("クリップボードにコピーされました\n\n" + affiliateCode);
+
+        const messageDiv = document.createElement("div");
+        messageDiv.textContent = "クリップボードにコピーされました\n\n" + affiliateCode;
+        messageDiv.style.position = "fixed";
+        messageDiv.style.top = "20px";
+        messageDiv.style.left = "50%";
+        messageDiv.style.transform = "translateX(-50%)";
+        messageDiv.style.backgroundColor = "rgba(51, 51, 51, 0.5)";
+        messageDiv.style.color = "#fff";
+        messageDiv.style.padding = "10px 20px";
+        messageDiv.style.borderRadius = "5px";
+        messageDiv.style.zIndex = "1000";
+        document.body.appendChild(messageDiv);
+
+        setTimeout(() => {
+          document.body.removeChild(messageDiv);
+        }, 3000);
       });
     } else {
       alert("Could not generate affiliate link. Make sure you're on a product page.");
