@@ -51,7 +51,6 @@ Cocoonのテーマを使っているWordpressにそのまま貼り付けると�
 
 ![](doc/options.png)
 
-
 ## ファイル構成
 
 - `manifest.json`: 拡張機能の設定ファイル
