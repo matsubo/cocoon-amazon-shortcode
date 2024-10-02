@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Amazon Affiliate Code Generator for Cocoon",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "description": "Generate affiliate link for Amazon products with keyword exclusion",
   "permissions": ["activeTab", "clipboardWrite", "storage"],
   "action": {
@@ -22,6 +22,6 @@
   ],
   "options_page": "options/index.html",
   "content_security_policy": {
-    "extension_pages": "script-src 'self' https://cdn.jsdelivr.net https://cdnjs.buymeacoffee.com; object-src 'self'"
+    "extension_pages": "script-src 'self'; script-src-elem 'self' https://cdnjs.buymeacoffee.com; object-src 'self'"
   }
 }
