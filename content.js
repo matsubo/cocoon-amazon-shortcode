@@ -33,8 +33,15 @@ chrome.runtime.onMessage.addListener((request) => {
 
         copyToClipboard(affiliateCode);
 
+        // Remove any existing message divs
+        const existingMessageDiv = document.querySelector(".affiliate-message");
+        if (existingMessageDiv) {
+          document.body.removeChild(existingMessageDiv);
+        }
+
         const messageDiv = document.createElement("div");
         messageDiv.textContent = "クリップボードにコピーされました\n\n" + affiliateCode;
+        messageDiv.className = "affiliate-message";
         messageDiv.style.position = "fixed";
         messageDiv.style.top = "20px";
         messageDiv.style.left = "50%";
@@ -44,12 +51,17 @@ chrome.runtime.onMessage.addListener((request) => {
         messageDiv.style.padding = "10px 20px";
         messageDiv.style.borderRadius = "5px";
         messageDiv.style.zIndex = "1000";
+        messageDiv.style.opacity = "0";
+        messageDiv.style.transition = "opacity 0.5s";
         document.body.appendChild(messageDiv);
+        requestAnimationFrame(() => {
+          messageDiv.style.opacity = "1";
+        });
 
         setTimeout(() => {
           document.body.removeChild(messageDiv);
         }, 3000);
-      });
+            });
     } else {
       alert("Could not generate affiliate link. Make sure you're on a product page.");
     }

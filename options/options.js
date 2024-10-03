@@ -1,9 +1,9 @@
 let excludeKeywords = [];
 let exclude = {
-    rakuten: true,
-    yahoo: true,
-    mercari: true,
-    dmm: true
+    rakuten: false,
+    yahoo: false,
+    mercari: false,
+    dmm: false
 };
 
 function saveOptions() {

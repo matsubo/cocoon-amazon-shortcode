@@ -21,7 +21,15 @@
     }
   ],
   "options_page": "options/index.html",
+  "commands": {
+    "activate_extension": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+L"
+      },
+      "description": "Activate the extension"
+    }
+  },
   "content_security_policy": {
-    "extension_pages": "script-src 'self'"
+    "extension_pages": "script-src 'self'; object-src 'self';"
   }
 }
