@@ -1,4 +1,4 @@
-chrome.browserAction.onClicked.addListener((tab) => {
+chrome.action.onClicked.addListener((tab) => {
   if (tab.url.includes("amazon.co.jp")) {
     chrome.tabs.sendMessage(tab.id, {action: "generateAffiliateLink"});
   } else {

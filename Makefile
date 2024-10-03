@@ -15,6 +15,8 @@ clean:
 package:
 	@echo "Packaging extension..."
 	@zip -r $(ZIP_NAME) $(SOURCE_DIR) \
+		node_modules//bootstrap/dist/js/bootstrap.bundle.min.js \
+		node_modules/bootswatch/dist/flatly/bootstrap.min.css \
 		-x "*.git*" \
 		-x "*.DS_Store" \
 		-x "*Thumbs.db" \
