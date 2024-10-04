@@ -36,6 +36,7 @@ https://amzn.to/3TKo9MF
 
 ![](doc/click.png)
 
+
 以下のようなコードがコピーされます。
 
 `[amazon asin="B0CG5X5MT4" kw="伊藤園 ラベルレス 磨かれて、澄みきった日本の水 2L×8本"]`

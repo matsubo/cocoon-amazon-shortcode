@@ -63,7 +63,7 @@ chrome.runtime.onMessage.addListener((request) => {
         }, 3000);
             });
     } else {
-      alert("Could not generate affiliate link. Make sure you're on a product page.");
+      alert("アフィリエイトリンクを生成できませんでした。商品ページにいることを確認してください。");
     }
   }
 });
