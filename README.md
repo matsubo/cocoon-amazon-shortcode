@@ -2,11 +2,17 @@
 
 [![ESLint](https://github.com/matsubo/cocoon-amazon-shortcode/actions/workflows/eslint.yml/badge.svg)](https://github.com/matsubo/cocoon-amazon-shortcode/actions/workflows/eslint.yml)
 
-![](icon.png)
-
 
 このChrome拡張機能は、Wordpressの[Cocoon](https://wp-cocoon.com/)テーマを利用しているWordpress用に
 Amazonの商品ページのアフィリエイトリンクをワンクリックで生成します。
+
+![](icon.png)
+
+## インストール
+
+Chrome Web Storeで拡張を公開しています。
+https://chromewebstore.google.com/detail/amazon-affiliate-code-gen/adllmboiaanlalincjihgenhmcdggian?hl=ja
+
 
 ## 特徴
 
