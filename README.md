@@ -11,6 +11,7 @@ Amazonの商品ページのアフィリエイトリンクをワンクリック�
 ## インストール
 
 Chrome Web Storeで拡張を公開しています。
+
 https://chromewebstore.google.com/detail/amazon-affiliate-code-gen/adllmboiaanlalincjihgenhmcdggian?hl=ja
 
 
@@ -21,12 +22,6 @@ https://chromewebstore.google.com/detail/amazon-affiliate-code-gen/adllmboiaanla
 - 生成されたコードをクリップボードにコピー
 - Amazon.co.jpドメインで動作
 
-## インストール
-
-1. このリポジトリをクローンするか、ZIPファイルをダウンロードして解凍します。
-2. Google Chromeを開き、`chrome://extensions/`に移動します。
-3. 右上の「デベロッパーモード」を有効にします。
-4. 「パッケージ化されていない拡張機能を読み込む」をクリックし、拡張機能ファイルが含まれるディレクトリを選択します。
 
 ## 使用方法
 
@@ -80,11 +75,11 @@ Command + Shift + L
 
 ## 開発
 
-この拡張機能を変更または拡張するには:
+1. このリポジトリをクローンするか、ZIPファイルをダウンロードして解凍します。
+2. Google Chromeを開き、`chrome://extensions/`に移動します。
+3. 右上の「デベロッパーモード」を有効にします。
+4. 「パッケージ化されていない拡張機能を読み込む」をクリックし、拡張機能ファイルが含まれるディレクトリを選択します。
 
-1. 関連するファイルに変更を加えます。
-2. 新しい権限や機能を追加する場合は、`manifest.json`ファイルを更新します。
-3. `chrome://extensions/`ページで拡張機能をリロードします。
 
 ## 注意事項
 
