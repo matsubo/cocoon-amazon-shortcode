@@ -10,21 +10,21 @@ chrome.runtime.onMessage.addListener((request) => {
 
         let attributes = [];
 
-        attributes.push(`asin="${asin}"`)
-        attributes.push(`kw="${cleanTitle}"`)
+        attributes.push(`asin="${asin}"`);
+        attributes.push(`kw="${cleanTitle}"`);
 
         const exclude = data.exclude;
 
-        if (exclude['rakuten'] == true) {
+        if (exclude["rakuten"] == true) {
           attributes.push("rakuten=0");
         }
-        if (exclude['yahoo'] == true) {
+        if (exclude["yahoo"] == true) {
           attributes.push("yahoo=0");
         }
-        if (exclude['mercari'] == true) {
+        if (exclude["mercari"] == true) {
           attributes.push("mercari=0");
         }
-        if (exclude['dmm'] == true) {
+        if (exclude["dmm"] == true) {
           attributes.push("dmm=0");
         }
 
@@ -81,7 +81,7 @@ function getProductTitle() {
 function removeExcludedKeywords(title, excludeKeywords) {
   let cleanTitle = title;
   excludeKeywords.forEach(keyword => {
-    cleanTitle = cleanTitle.replace(keyword, '').trim();
+    cleanTitle = cleanTitle.replace(keyword, "").trim();
   });
   return cleanTitle;
 }
