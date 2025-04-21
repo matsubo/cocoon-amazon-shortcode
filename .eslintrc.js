@@ -5,7 +5,7 @@ module.exports = {
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-      "ecmaVersion": 12,
+      "ecmaVersion": "latest",
       "sourceType": "module"
     },
     "globals": {
@@ -15,4 +15,4 @@ module.exports = {
       "semi": ["error", "always"],
       "quotes": ["error", "double"]
     }
-  }
+  };
