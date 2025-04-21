@@ -114,9 +114,10 @@ chrome.runtime.onMessage.addListener((message: NotificationMessage, sender, send
       
       // Return true to indicate we'll send a response asynchronously
       return true;
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error creating notification:", error);
-      sendResponse({ success: false, error: error.message || String(error) });
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      sendResponse({ success: false, error: errorMessage });
       return true;
     }
   }

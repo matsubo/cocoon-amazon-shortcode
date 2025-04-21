@@ -3,7 +3,7 @@
 /**
  * Interface for product information
  */
-interface ProductInfo {
+export interface ProductInfo {
   asin: string | null;
   title: string | null;
 }
