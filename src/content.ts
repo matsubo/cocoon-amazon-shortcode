@@ -64,114 +64,63 @@ const ClipboardManager = {
 };
 
 /**
- * NotificationManager - Manages notification messages
+ * NotificationManager - Manages notification messages using Chrome's API
  */
 const NotificationManager = {
   /**
    * Show a notification message
    * @param message - The message to display
-   * @param duration - Duration in milliseconds
    */
-  showNotification(message: string, duration: number = 3000): void {
-    // Remove any existing message divs
-    this.removeExistingNotifications();
+  showNotification(message: string): void {
+    console.log("Content script sending notification message:", message);
     
-    // Create and style the message div
-    const messageDiv = document.createElement("div");
-    messageDiv.textContent = message;
-    messageDiv.className = "affiliate-message";
-    
-    // Apply styles
-    this.applyStyles(messageDiv);
-    
-    // Add to DOM and animate
-    document.body.appendChild(messageDiv);
-    this.animateNotification(messageDiv, duration);
-  },
-  
-  /**
-   * Remove existing notification elements
-   */
-  removeExistingNotifications(): void {
-    const existingMessageDiv = document.querySelector(".affiliate-message");
-    if (existingMessageDiv) {
-      document.body.removeChild(existingMessageDiv);
-    }
-  },
-  
-  /**
-   * Apply styles to the notification element
-   * @param element - The element to style
-   */
-  applyStyles(element: HTMLElement): void {
-    // Apply Tailwind-like styles directly
-    element.style.position = "fixed";
-    element.style.top = "20px";
-    element.style.left = "50%";
-    element.style.transform = "translateX(-50%)";
-    element.style.backgroundColor = "rgba(51, 51, 51, 0.8)";
-    element.style.color = "#ffffff";
-    element.style.padding = "1rem 1.5rem";
-    element.style.borderRadius = "0.5rem";
-    element.style.boxShadow = "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)";
-    element.style.zIndex = "1000";
-    element.style.opacity = "0";
-    element.style.transition = "opacity 0.5s";
-    element.style.maxWidth = "90%";
-    element.style.whiteSpace = "pre-wrap";
-    element.style.textAlign = "center";
-    element.style.fontSize = "0.875rem";
-    element.style.lineHeight = "1.5";
-  },
-  
-  /**
-   * Animate the notification (fade in, wait, fade out)
-   * @param element - The element to animate
-   * @param duration - Duration to show the notification
-   */
-  animateNotification(element: HTMLElement, duration: number): void {
-    requestAnimationFrame(() => {
-      element.style.opacity = "1";
+    // Send message to background script to show notification
+    chrome.runtime.sendMessage({
+      action: "showNotification",
+      title: "Amazon Affiliate Link Generator",
+      message: message,
+      type: "basic"
+    }, (response) => {
+      console.log("Notification response from background:", response);
+      if (chrome.runtime.lastError) {
+        console.error("Error sending notification message:", chrome.runtime.lastError);
+        this.showFallbackNotification(message);
+      }
     });
-
-    setTimeout(() => {
-      document.body.removeChild(element);
-    }, duration);
   },
   
   /**
-   * Show an error message using a styled notification
+   * Show an error message
    * @param message - The error message
    */
   showError(message: string): void {
-    // Create and style the error div
-    const errorDiv = document.createElement("div");
-    errorDiv.textContent = message;
-    errorDiv.className = "affiliate-error";
+    console.log("Content script sending error notification:", message);
     
-    // Apply styles
-    errorDiv.style.position = "fixed";
-    errorDiv.style.top = "20px";
-    errorDiv.style.left = "50%";
-    errorDiv.style.transform = "translateX(-50%)";
-    errorDiv.style.backgroundColor = "rgba(220, 38, 38, 0.9)";
-    errorDiv.style.color = "#ffffff";
-    errorDiv.style.padding = "1rem 1.5rem";
-    errorDiv.style.borderRadius = "0.5rem";
-    errorDiv.style.boxShadow = "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)";
-    errorDiv.style.zIndex = "1000";
-    errorDiv.style.maxWidth = "90%";
-    errorDiv.style.textAlign = "center";
-    errorDiv.style.fontSize = "0.875rem";
-    errorDiv.style.lineHeight = "1.5";
+    // Send message to background script to show error notification
+    chrome.runtime.sendMessage({
+      action: "showNotification",
+      title: "エラー",
+      message: message,
+      type: "error"
+    }, (response) => {
+      console.log("Error notification response from background:", response);
+      if (chrome.runtime.lastError) {
+        console.error("Error sending error notification:", chrome.runtime.lastError);
+        this.showFallbackNotification(message, true);
+      }
+    });
+  },
+  
+  /**
+   * Fallback notification method if Chrome API fails
+   * @param message - The message to display
+   * @param isError - Whether this is an error message
+   */
+  showFallbackNotification(message: string, isError: boolean = false): void {
+    console.log("Using fallback notification:", message, isError);
     
-    // Add to DOM
-    document.body.appendChild(errorDiv);
-    
-    // Remove after 4 seconds
-    setTimeout(() => {
-      document.body.removeChild(errorDiv);
-    }, 4000);
+    // Create a simple alert as fallback
+    alert(isError ? `エラー: ${message}` : message);
   }
 };
 
