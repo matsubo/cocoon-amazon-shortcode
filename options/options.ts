@@ -171,7 +171,7 @@ const ui = {
     
     if (state.excludeKeywords.length === 0) {
       const emptyMessage = document.createElement("li");
-      emptyMessage.className = "list-group-item text-muted";
+      emptyMessage.className = "alert alert-info";
       emptyMessage.textContent = "除外キーワードはありません";
       list.appendChild(emptyMessage);
       return;
@@ -179,7 +179,7 @@ const ui = {
     
     state.excludeKeywords.forEach(keyword => {
       const li = document.createElement("li");
-      li.className = "list-group-item d-flex justify-content-between align-items-center";
+      li.className = "flex justify-between items-center p-3 mb-2 bg-base-200 rounded-lg";
       
       const span = document.createElement("span");
       span.textContent = keyword;
@@ -187,7 +187,7 @@ const ui = {
       
       const removeButton = document.createElement("button");
       removeButton.textContent = "削除";
-      removeButton.className = "btn btn-danger btn-sm";
+      removeButton.className = "btn btn-error btn-sm";
       removeButton.addEventListener("click", () => keywordManager.remove(keyword));
       li.appendChild(removeButton);
       
@@ -209,7 +209,9 @@ const ui = {
    */
   setupTheme(): void {
     if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      document.documentElement.setAttribute("data-bs-theme", "dark");
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
     }
   },
   
@@ -258,8 +260,25 @@ const ui = {
    */
   showError(message: string): void {
     console.error(message);
-    // Could be enhanced with a visual error message
-    alert(`エラーが発生しました: ${message}`);
+    
+    // Create a toast notification
+    const toast = document.createElement("div");
+    toast.className = "toast toast-top toast-center";
+    
+    const alert = document.createElement("div");
+    alert.className = "alert alert-error";
+    
+    const span = document.createElement("span");
+    span.textContent = `エラーが発生しました: ${message}`;
+    
+    alert.appendChild(span);
+    toast.appendChild(alert);
+    document.body.appendChild(toast);
+    
+    // Remove the toast after 3 seconds
+    setTimeout(() => {
+      document.body.removeChild(toast);
+    }, 3000);
   }
 };
 

@@ -28,8 +28,8 @@ package: build
 		icon.png \
 		manifest.json \
 		options/index.html \
-		node_modules/bootswatch/dist/flatly/bootstrap.min.css \
-		LICENSE
+		LICENSE \
+		-x "node_modules/*"
 	@echo "Package created: $(ZIP_NAME)"
 
 # 開発用ビルド (ウォッチモード)

@@ -104,17 +104,24 @@ const NotificationManager = {
    * @param element - The element to style
    */
   applyStyles(element: HTMLElement): void {
+    // Apply Tailwind-like styles directly
     element.style.position = "fixed";
     element.style.top = "20px";
     element.style.left = "50%";
     element.style.transform = "translateX(-50%)";
-    element.style.backgroundColor = "rgba(51, 51, 51, 0.5)";
-    element.style.color = "#fff";
-    element.style.padding = "10px 20px";
-    element.style.borderRadius = "5px";
+    element.style.backgroundColor = "rgba(51, 51, 51, 0.8)";
+    element.style.color = "#ffffff";
+    element.style.padding = "1rem 1.5rem";
+    element.style.borderRadius = "0.5rem";
+    element.style.boxShadow = "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)";
     element.style.zIndex = "1000";
     element.style.opacity = "0";
     element.style.transition = "opacity 0.5s";
+    element.style.maxWidth = "90%";
+    element.style.whiteSpace = "pre-wrap";
+    element.style.textAlign = "center";
+    element.style.fontSize = "0.875rem";
+    element.style.lineHeight = "1.5";
   },
   
   /**
@@ -133,11 +140,38 @@ const NotificationManager = {
   },
   
   /**
-   * Show an error message using browser alert
+   * Show an error message using a styled notification
    * @param message - The error message
    */
   showError(message: string): void {
-    alert(message);
+    // Create and style the error div
+    const errorDiv = document.createElement("div");
+    errorDiv.textContent = message;
+    errorDiv.className = "affiliate-error";
+    
+    // Apply styles
+    errorDiv.style.position = "fixed";
+    errorDiv.style.top = "20px";
+    errorDiv.style.left = "50%";
+    errorDiv.style.transform = "translateX(-50%)";
+    errorDiv.style.backgroundColor = "rgba(220, 38, 38, 0.9)";
+    errorDiv.style.color = "#ffffff";
+    errorDiv.style.padding = "1rem 1.5rem";
+    errorDiv.style.borderRadius = "0.5rem";
+    errorDiv.style.boxShadow = "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)";
+    errorDiv.style.zIndex = "1000";
+    errorDiv.style.maxWidth = "90%";
+    errorDiv.style.textAlign = "center";
+    errorDiv.style.fontSize = "0.875rem";
+    errorDiv.style.lineHeight = "1.5";
+    
+    // Add to DOM
+    document.body.appendChild(errorDiv);
+    
+    // Remove after 4 seconds
+    setTimeout(() => {
+      document.body.removeChild(errorDiv);
+    }, 4000);
   }
 };
 

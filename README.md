@@ -1,115 +1,175 @@
-# Amazon Affiliate Link Generator Chrome Extension for Cocoon
+# Amazon Affiliate Link Generator for Cocoon
 
 [![ESLint](https://github.com/matsubo/cocoon-amazon-shortcode/actions/workflows/eslint.yml/badge.svg)](https://github.com/matsubo/cocoon-amazon-shortcode/actions/workflows/eslint.yml)
 
+このChrome拡張機能は、WordPressの[Cocoon](https://wp-cocoon.com/)テーマを利用しているブログ向けに、Amazonの商品ページからアフィリエイトリンクをワンクリックで生成します。
 
-このChrome拡張機能は、Wordpressの[Cocoon](https://wp-cocoon.com/)テーマを利用しているWordpress用に
-Amazonの商品ページのアフィリエイトリンクをワンクリックで生成します。
+<div align="center">
+  <img src="icon.png" alt="Amazon Affiliate Link Generator for Cocoon" width="128">
+</div>
 
-![](icon.png)
+## 📋 目次
 
-## インストール
+- [機能概要](#機能概要)
+- [インストール方法](#インストール方法)
+- [使用方法](#使用方法)
+- [オプション設定](#オプション設定)
+- [ショートカットキー](#ショートカットキー)
+- [技術仕様](#技術仕様)
+- [開発ガイド](#開発ガイド)
+- [注意事項](#注意事項)
+- [貢献](#貢献)
+- [サポート](#サポート)
 
-Chrome Web Storeで拡張を公開しています。
+## 🚀 機能概要
 
-https://chromewebstore.google.com/detail/amazon-affiliate-code-gen/adllmboiaanlalincjihgenhmcdggian?hl=ja
+- **簡単操作**: Amazonの商品ページでワンクリックでアフィリエイトコードを生成
+- **Cocoon対応**: WordPressのCocoonテーマで使用できる形式でコード生成
+- **カスタマイズ可能**: 商品タイトルから不要なキーワードを除外可能
+- **他サイト除外**: 楽天、Yahoo!、メルカリ、DMMへの導線を非表示にする設定
+- **ダークモード対応**: システム設定に合わせて自動的にテーマを切り替え
 
+## 💾 インストール方法
 
-## 特徴
+Chrome Web Storeから簡単にインストールできます：
 
-- Amazonの商品ページを自動的に検出
-- アフィリエイトコードスニペットを次の形式で生成: `[amazon asin="<asin>" kw="<商品名>"]`
-- 生成されたコードをクリップボードにコピー
-- Amazon.co.jpドメインで動作
+[Chrome Web Storeでインストール](https://chromewebstore.google.com/detail/amazon-affiliate-code-gen/adllmboiaanlalincjihgenhmcdggian?hl=ja)
 
+## 📝 使用方法
 
-## 使用方法
+1. Amazon.co.jpの商品ページにアクセスします
+2. ブラウザツールバーの拡張機能アイコンをクリックします
+3. 以下の形式のアフィリエイトコードが自動的にクリップボードにコピーされます：
+   ```
+   [amazon asin="XXXXXXXXXX" kw="商品名"]
+   ```
+4. WordPressの投稿画面に貼り付けるだけで完了です
 
-1. Amazon.co.jpの商品のページに移動します。
-2. Chromeのツールバーにある拡張機能アイコンをクリックします。
-3. アフィリエイトコードが自動的に生成され、クリップボードにコピーされます。
-4. 必要な場所にコードを貼り付けます。
+### 動作例
 
-## 動作例
+1. Amazonの商品ページを開きます（例: https://amzn.to/3TKo9MF）
+2. 拡張機能のアイコンをクリックします
 
-以下の商品ページを開きます。
-https://amzn.to/3TKo9MF
+   <img src="doc/click.png" alt="拡張機能アイコンをクリック" width="600">
 
-ブラウザ拡張のボタンをクリックします。
+3. 以下のようなコードがクリップボードにコピーされます：
+   ```
+   [amazon asin="B0CG5X5MT4" kw="伊藤園 ラベルレス 磨かれて、澄みきった日本の水 2L×8本"]
+   ```
 
-![](doc/click.png)
+4. Cocoonテーマを使用しているWordPressに貼り付けると、以下のように表示されます：
 
+   <img src="doc/publish.png" alt="WordPressでの表示例" width="600">
 
-以下のようなコードがコピーされます。
+## ⚙️ オプション設定
 
-`[amazon asin="B0CG5X5MT4" kw="伊藤園 ラベルレス 磨かれて、澄みきった日本の水 2L×8本"]`
+拡張機能のオプションページでは以下の設定が可能です：
 
+1. **除外キーワード設定**: 商品タイトルから除外したいキーワードを追加できます
+   - 例: `【Amazon.co.jp限定】`などの不要なフレーズを除外
+2. **他サイト表示設定**: 楽天、Yahoo!、メルカリ、DMMへの導線表示を制御できます
 
-Cocoonのテーマを使っているWordpressにそのまま貼り付けると以下のように表示されます。
+<img src="doc/options.png" alt="オプション設定画面" width="600">
 
-![](doc/publish.png)
+## ⌨️ ショートカットキー
 
+| OS | ショートカット |
+|---|---|
+| Windows / Linux | `Ctrl + Shift + L` |
+| macOS | `Command + Shift + L` |
 
-この拡張のオプションページでは、タイトルから指定したキーワードを除外できます。
-たとえば、 `【Amazon.co.jp限定】` というフレーズが商品タイトルに入っていますが商品名では無いので除去します。
+## 🔧 技術仕様
 
-![](doc/options.png)
+### 使用技術
 
-## ショートカットキー
+- **言語**: TypeScript
+- **スタイリング**: Tailwind CSS + daisyUI
+- **ビルドツール**: npm scripts + Make
 
-Windows, Linux
+### ファイル構成
+
 ```
-Ctrl + Shift + L
+.
+├── dist/               # コンパイル済みファイル
+│   ├── src/            # TypeScriptコンパイル結果
+│   ├── options/        # オプションページJS
+│   └── styles/         # Tailwind CSS
+├── src/                # ソースコード
+│   ├── background.ts   # バックグラウンドスクリプト
+│   ├── content.ts      # コンテンツスクリプト
+│   └── styles/         # スタイルシート
+├── options/            # オプションページ
+│   ├── index.html      # オプションページHTML
+│   └── options.ts      # オプションページロジック
+├── manifest.json       # 拡張機能マニフェスト
+├── tailwind.config.js  # Tailwind設定
+└── tsconfig.json       # TypeScript設定
 ```
 
-mac
-```
-Command + Shift + L
-```
+### アーキテクチャ
 
-## ファイル構成
+拡張機能は以下のモジュールで構成されています：
 
-- `manifest.json`: 拡張機能の設定ファイル
-- `content.js`: Amazonの商品ページとやり取りするコンテントスクリプト
-- `icon.png`: 拡張機能アイコン（48x48ピクセル）
+<img src="2025-04-21-11-30-41.png" alt="アーキテクチャ図" width="600">
 
-## 開発
+## 🛠️ 開発ガイド
 
-1. このリポジトリをクローンするか、ZIPファイルをダウンロードして解凍します。
-2. Google Chromeを開き、`chrome://extensions/`に移動します。
-3. 右上の「デベロッパーモード」を有効にします。
-4. 「パッケージ化されていない拡張機能を読み込む」をクリックし、拡張機能ファイルが含まれるディレクトリを選択します。
+### 開発環境のセットアップ
 
-### 設計
+1. リポジトリをクローンします：
+   ```bash
+   git clone https://github.com/matsubo/cocoon-amazon-shortcode.git
+   cd cocoon-amazon-shortcode
+   ```
 
-利用しているモジュールと関係性
+2. 依存関係をインストールします：
+   ```bash
+   npm install
+   ```
 
-![](2025-04-21-11-30-41.png)
+3. 開発ビルドを実行します：
+   ```bash
+   make dev
+   ```
 
+### ビルドコマンド
 
-### Lint
+| コマンド | 説明 |
+|---|---|
+| `make build` | TypeScriptとTailwind CSSをコンパイル |
+| `make package` | ビルドして配布用ZIPファイルを作成 |
+| `make dev` | 開発モードでTypeScriptコンパイラを実行 |
+| `make clean` | ビルド成果物を削除 |
+| `npm run lint` | ESLintでコードをチェック |
 
-```
-npm run lint
-```
+### Chromeへのインストール方法（開発版）
 
+1. `chrome://extensions/` にアクセスします
+2. 「デベロッパーモード」を有効にします
+3. 「パッケージ化されていない拡張機能を読み込む」をクリックします
+4. プロジェクトのディレクトリを選択します
 
-## 注意事項
+## ⚠️ 注意事項
 
-- この拡張機能はAmazon.co.jpの商品ページでのみ動作します。
-- この拡張機能を使用する際は、Amazonのアフィリエイトプログラムの利用規約を遵守してください。
-- Amazonがウェブサイトの構造を変更した場合、拡張機能の更新が必要になることがあります。
+- この拡張機能はAmazon.co.jpの商品ページでのみ動作します
+- Amazonのアフィリエイトプログラムの利用規約を遵守してください
+- Amazonのウェブサイト構造が変更された場合、拡張機能の更新が必要になる場合があります
 
-## 貢献
+## 👥 貢献
 
-貢献は歓迎します！プルリクエストを提出してください。
+貢献は大歓迎です！以下の方法で貢献できます：
 
-## 応援
+1. バグ報告や機能リクエストはIssueで提出してください
+2. コード改善はPull Requestを送信してください
+3. コードを修正する前に `npm run lint` を実行してください
 
-もし役に立ったと思ったら、応援お願いします！
+## 🙏 サポート
 
-https://www.amazon.jp/hz/wishlist/ls/1Y9PUK3OZYI5M?ref_=wl_share
+この拡張機能が役立ったと思われましたら、以下の方法でサポートいただけると嬉しいです：
 
+- [Amazon欲しいものリスト](https://www.amazon.jp/hz/wishlist/ls/1Y9PUK3OZYI5M?ref_=wl_share)
+- [Buy Me A Coffee](https://buymeacoffee.com/matsubokkuri)
 
-コーヒー飲みたい。
-https://buymeacoffee.com/matsubokkuri
+---
+
+© 2025 [matsubokkuri](https://x.com/matsubokkuri)
