@@ -1,22 +1,29 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "ES2020",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["DOM", "ES2020"],
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "dist",
-    "rootDir": ".",
     "sourceMap": true,
-    "lib": ["DOM", "ES2020"],
-    "moduleResolution": "node",
-    "types": ["chrome"],
-    "noImplicitAny": false
+    "types": ["chrome", "vite/client"],
+    "noImplicitAny": false,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": [
     "src/**/*.ts",
-    "options/**/*.ts"
+    "options/**/*.ts",
+    "vite.config.ts"
   ],
   "exclude": [
     "node_modules"

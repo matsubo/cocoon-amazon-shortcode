@@ -84,7 +84,7 @@ Chrome Web Storeから簡単にインストールできます：
 
 - **言語**: TypeScript
 - **スタイリング**: Tailwind CSS + daisyUI
-- **ビルドツール**: npm scripts + Make
+- **ビルドツール**: Vite + npm scripts + Make
 
 ### ファイル構成
 
@@ -97,11 +97,14 @@ Chrome Web Storeから簡単にインストールできます：
 ├── src/                # ソースコード
 │   ├── background.ts   # バックグラウンドスクリプト
 │   ├── content.ts      # コンテンツスクリプト
+│   ├── main.ts         # 開発用エントリーポイント
 │   └── styles/         # スタイルシート
 ├── options/            # オプションページ
 │   ├── index.html      # オプションページHTML
 │   └── options.ts      # オプションページロジック
+├── index.html          # 開発用エントリーポイントHTML
 ├── manifest.json       # 拡張機能マニフェスト
+├── vite.config.ts      # Vite設定
 ├── tailwind.config.js  # Tailwind設定
 └── tsconfig.json       # TypeScript設定
 ```
@@ -132,13 +135,19 @@ Chrome Web Storeから簡単にインストールできます：
    make dev
    ```
 
+4. または、Vite開発サーバーを起動します：
+   ```bash
+   make serve
+   ```
+
 ### ビルドコマンド
 
 | コマンド | 説明 |
 |---|---|
-| `make build` | TypeScriptとTailwind CSSをコンパイル |
+| `make build` | ViteでTypeScriptとTailwind CSSをコンパイル |
 | `make package` | ビルドして配布用ZIPファイルを作成 |
-| `make dev` | 開発モードでTypeScriptコンパイラを実行 |
+| `make dev` | 開発モードでViteビルドを実行（ウォッチモード） |
+| `make serve` | Vite開発サーバーを起動 |
 | `make clean` | ビルド成果物を削除 |
 | `npm run lint` | ESLintでコードをチェック |
 

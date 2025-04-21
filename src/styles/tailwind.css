@@ -4,10 +4,22 @@
 
 @layer components {
   .custom-h1 {
-    @apply text-xl font-bold py-2 border-b-2 border-gray-200 shadow-md;
+    font-weight: bold;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom-width: 2px;
+    border-color: rgb(229 231 235);
+    font-size: 1.25rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   }
   
   .custom-h2 {
-    @apply text-lg font-bold py-1 border-b border-gray-200 shadow-sm;
+    font-weight: bold;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    border-bottom-width: 1px;
+    border-color: rgb(229 231 235);
+    font-size: 1.125rem;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   }
 }

@@ -11,12 +11,13 @@ clean:
 	@echo "Cleaning up..."
 	@rm -f $(ZIP_NAME)
 	@rm -rf dist
+	@rm -rf node_modules/.vite
 
 # TypeScript ビルド
 build:
 	@echo "Installing dependencies if needed..."
 	@[ -d "node_modules" ] || npm install
-	@echo "Building TypeScript files..."
+	@echo "Building project with Vite..."
 	@npm run build
 	@echo "Build completed successfully!"
 
@@ -35,7 +36,12 @@ package: build
 # 開発用ビルド (ウォッチモード)
 dev:
 	@echo "Starting development build in watch mode..."
-	@npm run watch
+	@npm run dev
+
+# 開発サーバー起動
+serve:
+	@echo "Starting development server..."
+	@npm run serve
 
 # 検証
 verify:
@@ -47,11 +53,12 @@ verify:
 help:
 	@echo "Available targets:"
 	@echo "  all     : Build and package the extension (default)"
-	@echo "  build   : Compile TypeScript files"
+	@echo "  build   : Compile TypeScript files with Vite"
 	@echo "  clean   : Remove the ZIP file and dist directory"
-	@echo "  dev     : Start TypeScript compiler in watch mode"
+	@echo "  dev     : Start Vite build in watch mode"
+	@echo "  serve   : Start Vite development server"
 	@echo "  package : Create the ZIP file (runs build first)"
 	@echo "  verify  : List contents of the ZIP file"
 	@echo "  help    : Show this help message"
 
-.PHONY: all clean build package dev verify help
+.PHONY: all clean build package dev serve verify help
